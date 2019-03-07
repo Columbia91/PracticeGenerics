@@ -13,13 +13,13 @@ namespace PracticeGenerics
         static void Main(string[] args)
         {
             string text;
-            using(StreamReader sr = new StreamReader("text.txt"))
+            using (StreamReader sr = new StreamReader("text.txt"))
             {
                 text = sr.ReadToEnd();
                 text = text.Trim(new char[] { '\n' });
             }
             
-            string[] words = text.Split(new char[] { ' ', ',', '.', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] words = text.Split(new char[] { ' ', ',', '.' }, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var word in words)
             {
@@ -32,15 +32,20 @@ namespace PracticeGenerics
                 dictionary.Add(i, words[i]);
             }
             
-            int count = 0;
+            int k = 0;
             Dictionary<int, string> newDictionary = new Dictionary<int, string>();
 
             for (int i = 0; i < dictionary.Count; i++)
             {
                 if (!newDictionary.ContainsValue(dictionary[i]))
                 {
-
+                    newDictionary.Add(k++, dictionary[i]);
                 }
+            }
+
+            for (int i = 0; i < newDictionary.Count; i++)
+            {
+                Console.WriteLine(newDictionary[i]);
             }
         }
     }
